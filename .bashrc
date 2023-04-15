@@ -2,9 +2,6 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# fast git status
-source ~/misc/gitstatus/gitstatus.prompt.sh
-
 # If not running interactively, don't do anything
 case $- in
   *i*) ;;
@@ -38,7 +35,7 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
   debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-TERM=xterm-kitty
+# TERM=xterm-kitty
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
@@ -130,7 +127,6 @@ export LD_LIBRARY_PATH=/usr/local/cuda-11.6/lib64${LD_LIBRARY_PATH:+:${LD_LIBRAR
 
 PS1='\[\e[01;32m\]\u@\h\[\e[00m\] '           # green user@host
 PS1+='\[\e[01;34m\]\w\[\e[00m\]'              # blue current working directory
-PS1+='${GITSTATUS_PROMPT:+ $GITSTATUS_PROMPT}'    # git status (requires promptvars option)
 PS1+=' \[\e[01;$((31+!$?))m\]\$\[\e[00m\] '  # green/red (success/error) $/# (normal/root)
 PS1+='\[\e]0;\u@\h: \w\a\]'                       # terminal
 
