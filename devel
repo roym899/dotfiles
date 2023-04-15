@@ -1,0 +1,24 @@
+tmux has-session -t devel &>/dev/null 
+if [ $? -eq 0 ]
+then
+  tmux kill-window -a -t devel
+  tmux kill-pane -a -t devel
+  tmux move-window -r -t devel
+  tmux rename-window -t devel:1 editor
+else
+  tmux new-session -s devel -d -n editor
+fi
+
+tmux split-window -h -t devel
+tmux send-keys -t devel 'htop' C-m
+tmux split-window -v -p 65 -t devel
+tmux send-keys -t devel 'gpustat --watch' C-m
+tmux split-window -v -p 90 -t devel
+
+tmux new-window -n term -t devel
+tmux select-window -t devel:1
+tmux select-pane -t devel:1.1
+
+tmux attach -t devel
+
+# echo -e 'Devel session created. Run \033[38;5;202mtmux attach -t devel\033[0m to attach to it.'
