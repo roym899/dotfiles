@@ -8,7 +8,7 @@ endif
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -36,6 +36,8 @@ Plug 'unblevable/quick-scope' " highlighting for faster left/right navigation
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " for Ag search
 Plug 'junegunn/fzf.vim'
 Plug 'lambdalisue/fern.vim'
+Plug 'djoshea/vim-autoread'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 " Plug 'lambdalisue/fern-hijack.vim'
 " Plug 'github/copilot.vim'
 
@@ -45,10 +47,11 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+colorscheme iceberg
+
 
 autocmd ColorScheme * highlight link QuickScopePrimary Define
 autocmd ColorScheme * highlight link QuickScopeSecondary Function
-colorscheme iceberg
 
 
 " file ending to syntax
@@ -60,6 +63,7 @@ let g:formatdef_multiple = '"isort - | black -q -"'
 let g:formatters_python = ['multiple']
 let g:formatters_cuda = ['clangformat']
 let g:tex_flavor = 'latex'
+let g:coc_disable_startup_warning = 1  " remove warning when using vim for git commit
 
 set background=dark " otherwise colors for vim in tmux will be different
 set directory=~/.vim/swapfiles// " must exist
@@ -129,7 +133,7 @@ endif
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
 if has("patch-8.1.1564")
-" Recently vim can merge signcolumn and number column into one
+  " Recently vim can merge signcolumn and number column into one
   set signcolumn=number
 else
   set signcolumn=yes
@@ -194,4 +198,5 @@ set clipboard=unnamedplus
 set updatetime=300 " crisp user experience
 autocmd BufEnter * :syntax sync fromstart " slow but improved syntax highlighting
 map <S-k> <Nop> " remove K (look up doc)
+
 nnoremap gb <C-O> " remap C-O to gb (go back) to avoid splitting conflict
