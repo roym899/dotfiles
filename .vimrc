@@ -27,7 +27,6 @@ Plug 'bfrg/vim-cpp-modern' " better support for C++11/14/17/20
 Plug 'tpope/vim-sleuth' " automatic indent adjustment based on file
 Plug 'jvirtanen/vim-octave' " octave support
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intellisense
-" Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}  " PyRight
 Plug 'Chiel92/vim-autoformat' " add :Autoformat to invoke autoformatter
 Plug 'othree/html5.vim' " better HTML support
 " Plug 'lervag/vimtex' " better support for tex
@@ -38,7 +37,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'lambdalisue/fern.vim'
 Plug 'djoshea/vim-autoread'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-" Plug 'lambdalisue/fern-hijack.vim'
+Plug 'lambdalisue/fern-hijack.vim'
+Plug 'cespare/vim-toml'
 " Plug 'github/copilot.vim'
 
 call plug#end()
