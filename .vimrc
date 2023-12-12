@@ -12,6 +12,14 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" create swap and backupfiles dir if it doesn't exist
+if !isdirectory(expand('~/.vim/swapfiles'))
+  silent !mkdir -p ~/.vim/swapfiles
+endif
+if !isdirectory(expand('~/.vim/backupfiles'))
+  silent !mkdir -p ~/.vim/backupfiles
+endif
+
 " Coc extensions
 " let g:coc_global_extensions = ['coc-pyright']
 
@@ -66,8 +74,8 @@ let g:tex_flavor = 'latex'
 let g:coc_disable_startup_warning = 1  " remove warning when using vim for git commit
 
 set background=dark " otherwise colors for vim in tmux will be different
-set directory=~/.vim/swapfiles// " must exist
-set backupdir=~/.vim/backupfiles// " must exist
+set directory=~/.vim/swapfiles//
+set backupdir=~/.vim/backupfiles//
 " set noswapfile " disable swap files
 
 " Custom key bindings
