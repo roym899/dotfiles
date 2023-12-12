@@ -59,9 +59,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-  PS1='${debian_chroot:+($debian_chroot)}\[\e[1;32m\]\u@\h\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\] ${GITSTATUS_PROMPT}\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -74,7 +74,6 @@ case "$TERM" in
   *)
     ;;
 esac
-
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -89,10 +88,10 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alF'
+alias ll='ls -lha'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -121,18 +120,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# can be changed to switch system cuda version
+# CUDA (use to set default version, use direnv to overwrite locally)
 export PATH=/usr/local/cuda-11.6/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-11.6/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
-PS1='\[\e[01;32m\]\u@\h\[\e[00m\] '           # green user@host
-PS1+='\[\e[01;34m\]\w\[\e[00m\]'              # blue current working directory
-PS1+=' \[\e[01;$((31+!$?))m\]\$\[\e[00m\] '  # green/red (success/error) $/# (normal/root)
-PS1+='\[\e]0;\u@\h: \w\a\]'                       # terminal
-
-export ROSCONSOLE_FORMAT='[${severity}] [${node}] ${message}'
-
-# batch history
+# bash history
 export HISTTIMEFORMAT="%d/%m/%y %T " # add timestamp
 export PROMPT_COMMAND="history -a" # keep history of parallel terminals
 
@@ -146,6 +138,7 @@ export FZF_DEFAULT_COMMAND='ag -g ""'
 # add pipclear command to uninstall everything in pip environment
 alias pipclear='pip uninstall -y -r <(pip freeze)'
 
+export ROSCONSOLE_FORMAT='[${severity}] [${node}] ${message}'
 # Switch between ROS 2, ROS 1, and pyenv (use conda only through pyenv)
 if [ -f "$HOME/ros2" ]; then
   echo "ROS 2 activated."
