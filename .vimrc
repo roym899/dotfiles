@@ -12,6 +12,14 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" create swap and backupfiles dir if it doesn't exist
+if !isdirectory(expand('~/.vim/swapfiles'))
+  silent !mkdir -p ~/.vim/swapfiles
+endif
+if !isdirectory(expand('~/.vim/backupfiles'))
+  silent !mkdir -p ~/.vim/backupfiles
+endif
+
 " Coc extensions
 " let g:coc_global_extensions = ['coc-pyright']
 
@@ -27,7 +35,6 @@ Plug 'bfrg/vim-cpp-modern' " better support for C++11/14/17/20
 Plug 'tpope/vim-sleuth' " automatic indent adjustment based on file
 Plug 'jvirtanen/vim-octave' " octave support
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intellisense
-" Plug 'fannheyward/coc-pyright', {'do': 'yarn install --frozen-lockfile'}  " PyRight
 Plug 'Chiel92/vim-autoformat' " add :Autoformat to invoke autoformatter
 Plug 'othree/html5.vim' " better HTML support
 " Plug 'lervag/vimtex' " better support for tex
@@ -38,7 +45,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'lambdalisue/fern.vim'
 Plug 'djoshea/vim-autoread'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-" Plug 'lambdalisue/fern-hijack.vim'
+Plug 'lambdalisue/fern-hijack.vim'
+Plug 'cespare/vim-toml'
 " Plug 'github/copilot.vim'
 
 call plug#end()
@@ -66,8 +74,8 @@ let g:tex_flavor = 'latex'
 let g:coc_disable_startup_warning = 1  " remove warning when using vim for git commit
 
 set background=dark " otherwise colors for vim in tmux will be different
-set directory=~/.vim/swapfiles// " must exist
-set backupdir=~/.vim/backupfiles// " must exist
+set directory=~/.vim/swapfiles//
+set backupdir=~/.vim/backupfiles//
 " set noswapfile " disable swap files
 
 " Custom key bindings
