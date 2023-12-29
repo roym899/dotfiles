@@ -35,7 +35,7 @@ Plug 'bfrg/vim-cpp-modern' " better support for C++11/14/17/20
 Plug 'tpope/vim-sleuth' " automatic indent adjustment based on file
 Plug 'jvirtanen/vim-octave' " octave support
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intellisense
-Plug 'Chiel92/vim-autoformat' " add :Autoformat to invoke autoformatter
+Plug 'vim-autoformat/vim-autoformat' " add :Autoformat to invoke autoformatter
 Plug 'othree/html5.vim' " better HTML support
 " Plug 'lervag/vimtex' " better support for tex
 Plug 'udalov/kotlin-vim' " support for kotlin
@@ -47,7 +47,8 @@ Plug 'djoshea/vim-autoread'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'lambdalisue/fern-hijack.vim'
 Plug 'cespare/vim-toml'
-" Plug 'github/copilot.vim'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'github/copilot.vim'
 
 call plug#end()
 
@@ -61,6 +62,15 @@ colorscheme iceberg
 autocmd ColorScheme * highlight link QuickScopePrimary Define
 autocmd ColorScheme * highlight link QuickScopeSecondary Function
 
+" disable coc for multi cursor mode (autocomplete becomes very slow)
+function! MyVmStart()
+  execute 'CocDisable'
+endfunction
+function! MyVmExit()
+  execute 'CocEnable'
+endfunction
+autocmd User visual_multi_start   call MyVmStart()
+autocmd User visual_multi_exit    call MyVmExit()
 
 " file ending to syntax
 autocmd BufNewFile,BufRead *.cu set filetype=cpp
@@ -192,12 +202,17 @@ augroup END
 
 " fern instead of netrw for explore commands
 let loaded_netrwPlugin = 1 " disable netrw
-nmap <leader>? <Plug>(fern-action-help) " remap ? to enable backward search in vim
+nmap <leader>? <Plug>(fern-action-help) " remap ? to  backward search in vim
 command! Explore Fern .
 command! Vexplore vsplit | Fern .
 command! Sexplore split | Fern .
 
-" other options
+" enable mouse
+set ttymouse=xterm2
+set mouse=a
+let g:VM_mouse_mappings = 1  " for visual-multi
+
+" other options 
 set splitright " open new vertical splits to the right
 set splitbelow " open new horizontal splits to the bottom
 set wildmode=longest,list " let tab behave like in bash
