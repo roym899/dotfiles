@@ -212,6 +212,10 @@ set ttymouse=xterm2
 set mouse=a
 let g:VM_mouse_mappings = 1  " for visual-multi
 
+" use space to accept copilot suggestion
+imap <silent><script><expr> <S-Tab> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
+
 " other options 
 set splitright " open new vertical splits to the right
 set splitbelow " open new horizontal splits to the bottom
