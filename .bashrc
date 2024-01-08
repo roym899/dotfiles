@@ -121,8 +121,8 @@ if ! shopt -oq posix; then
 fi
 
 # CUDA (use to set default version, use direnv to overwrite locally)
-export PATH=/usr/local/cuda-11.6/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda-11.6/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export PATH=/usr/local/cuda-12.1/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-12.1/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 # bash history
 export HISTTIMEFORMAT="%d/%m/%y %T " # add timestamp
