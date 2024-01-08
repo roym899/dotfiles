@@ -149,12 +149,11 @@ elif [ -f "$HOME/ros" ]; then
   echo "ROS 1 activated."
   source /opt/ros/noetic/setup.bash
   source $HOME/noetic_ws/devel/setup.bash
-  alias cm="cd $HOME/noetic_ws && catkin_make -DCMAKE_BUILD_TYPE=Release && cd - > /dev/null"
+  alias cm="cd $HOME/noetic_ws && catkin_make -DCMAKE_CXX_FLAGS=-Wall -DCMAKE_C_FLAGS=-Wall -DCMAKE_BUILD_TYPE=Release && cd - > /dev/null"
 else
   export PYTHONPATH=""
   export PATH="$HOME/.pyenv/bin:$PATH"
   eval "$(pyenv init -)"
-  # eval "$(pyenv virtualenv-init -)"
 fi
 
 eval "$(direnv hook bash)"
@@ -163,3 +162,7 @@ export DIRENV_LOG_FORMAT=
 if [ -f "$HOME/.secrets" ] ; then
   source $HOME/.secrets
 fi
+
+. "$HOME/.cargo/env"
+export PATH=$PATH:/home/leo/.pixi/bin
+eval "$(pixi completion --shell bash)"
