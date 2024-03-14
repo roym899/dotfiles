@@ -1,6 +1,9 @@
 {
     "diagnostic.checkCurrentLine": true,
     "pyright.enable": true,
+    "inlayHint.enable": false,
+    "inlayHint.display": false,
+    "inlayHint.enableParameter": false,
     "suggest": {
         "noselect": true,
         "enablePreselect": true
