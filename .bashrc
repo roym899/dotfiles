@@ -158,6 +158,7 @@ else
 fi
 
 eval "$(direnv hook bash)"
+export DIRENV_LOG_FORMAT=  # mute direnv
 
 if [ -f "$HOME/.secrets" ] ; then
   source $HOME/.secrets
