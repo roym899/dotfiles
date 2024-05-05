@@ -223,6 +223,7 @@ set wildmode=longest,list " let tab behave like in bash
 set tildeop " make tilde use motion instead of just count
 set clipboard=unnamedplus
 set updatetime=300 " crisp user experience
+au FileType * setlocal formatoptions-=c formatoptions-=o formatoptions-=r
 :set exrc " read local .vimrc
 autocmd BufEnter * :syntax sync fromstart " slow but improved syntax highlighting
 map <S-k> <Nop> " remove K (look up doc)
