@@ -90,6 +90,8 @@ set backupdir=~/.vim/backupfiles//
 
 " Custom key bindings
 inoremap qw <Esc>
+vnoremap qw <Esc>
+
 map Y y$
 " moving up and down in wrapped lines
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
