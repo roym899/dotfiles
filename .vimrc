@@ -89,7 +89,7 @@ set backupdir=~/.vim/backupfiles//
 " set noswapfile " disable swap files
 
 " Custom key bindings
-inoremap jk <Esc>
+inoremap qw <Esc>
 map Y y$
 " moving up and down in wrapped lines
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
