@@ -86,7 +86,7 @@ let g:coc_disable_startup_warning = 1  " remove warning when using vim for git c
 set background=dark " otherwise colors for vim in tmux will be different
 set directory=~/.vim/swapfiles//
 set backupdir=~/.vim/backupfiles//
-" set noswapfile " disable swap files
+set noswapfile " disable swap files
 
 " Custom key bindings
 inoremap qw <Esc>
