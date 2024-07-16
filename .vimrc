@@ -93,6 +93,7 @@ inoremap qw <Esc>
 vnoremap qw <Esc>
 
 map Y y$
+
 " moving up and down in wrapped lines
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
@@ -213,6 +214,10 @@ command! Sexplore split | Fern .
 set ttymouse=xterm2
 set mouse=a
 let g:VM_mouse_mappings = 1  " for visual-multi
+
+" visual-multi key mappings
+nnoremap <C-j> <Plug>(VM-Add-Cursor-Down)
+nnoremap <C-k> <Plug>(VM-Add-Cursor-Up)
 
 " use space to accept copilot suggestion
 imap <silent><script><expr> <S-Tab> copilot#Accept("\<CR>")
