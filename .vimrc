@@ -225,6 +225,8 @@ set wildmode=longest,list " let tab behave like in bash
 set tildeop " make tilde use motion instead of just count
 set clipboard=unnamedplus
 set updatetime=300 " crisp user experience
+set timeoutlen=1000 " waiting for mappings
+set ttimeoutlen=0 " faster keycodes
 au FileType * setlocal formatoptions-=c formatoptions-=o formatoptions-=r
 :set exrc " read local .vimrc
 autocmd BufEnter * :syntax sync fromstart " slow but improved syntax highlighting
