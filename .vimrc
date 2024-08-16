@@ -19,6 +19,9 @@ endif
 if !isdirectory(expand('~/.vim/backupfiles'))
   silent !mkdir -p ~/.vim/backupfiles
 endif
+if !isdirectory(expand('~/.vim/undo'))
+  silent !mkdir -p ~/.vim/undo
+endif
 
 " Coc extensions
 " let g:coc_global_extensions = ['coc-pyright']
@@ -84,8 +87,10 @@ let g:tex_flavor = 'latex'
 let g:coc_disable_startup_warning = 1  " remove warning when using vim for git commit
 
 set background=dark " otherwise colors for vim in tmux will be different
+
 set directory=~/.vim/swapfiles//
 set backupdir=~/.vim/backupfiles//
+set undodir=~/.vim/undo//
 set noswapfile " disable swap files
 
 " Custom key bindings
@@ -228,8 +233,12 @@ set splitright " open new vertical splits to the right
 set splitbelow " open new horizontal splits to the bottom
 set wildmode=longest,list " let tab behave like in bash
 set tildeop " make tilde use motion instead of just count
-set clipboard=unnamedplus
+set clipboard=unnamed
 set updatetime=300 " crisp user experience
+set scrolloff=5 " keep 5 lines above and below cursor
+set undofile
+set undolevels=1000
+set undoreload=10000
 au FileType * setlocal formatoptions-=c formatoptions-=o formatoptions-=r
 :set exrc " read local .vimrc
 autocmd BufEnter * :syntax sync fromstart " slow but improved syntax highlighting

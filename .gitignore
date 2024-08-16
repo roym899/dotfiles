@@ -1,1 +1,4 @@
 .secrets
+.vim/undo
+.vim/plugged
+.vim/autoload

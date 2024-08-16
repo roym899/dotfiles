@@ -18,7 +18,8 @@
         },
         "linting": {
             "enabled": true,
-            "flake8Enabled": true
+            "flake8Enabled": true,
+            "ruffEnabled": true
         }
     },
     "languageserver": {
