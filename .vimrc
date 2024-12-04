@@ -35,7 +35,7 @@ Plug 'tpope/vim-eunuch' " add gcc and gc commands to toggle comments
 Plug 'ConradIrwin/vim-bracketed-paste' " automatic paste / nopaste for pasting from clipboard
 Plug 'Vimjas/vim-python-pep8-indent' " better indentation in Python
 Plug 'bfrg/vim-cpp-modern' " better support for C++11/14/17/20
-Plug 'tpope/vim-sleuth' " automatic indent adjustment based on file
+" Plug 'tpope/vim-sleuth' " automatic indent adjustment based on file
 Plug 'jvirtanen/vim-octave' " octave support
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intellisense
 Plug 'vim-autoformat/vim-autoformat' " add :Autoformat to invoke autoformatter
@@ -205,7 +205,7 @@ nnoremap <silent> <C-w><Right> :<C-u>call <SID>JumpWithWrap('l', 'h')<CR>
 " fern drawer by default
 augroup my-fern-startup
   autocmd! *
-  autocmd VimEnter * ++nested Fern . -drawer -stay
+  autocmd VimEnter * ++nested Fern . -drawer -stay -width=40
 augroup END
 
 " fern instead of netrw for explore commands
@@ -233,7 +233,7 @@ set splitright " open new vertical splits to the right
 set splitbelow " open new horizontal splits to the bottom
 set wildmode=longest,list " let tab behave like in bash
 set tildeop " make tilde use motion instead of just count
-set clipboard=unnamed
+set clipboard=unnamedplus
 set updatetime=300 " crisp user experience
 set timeoutlen=1000 " waiting for mappings
 set ttimeoutlen=0 " faster keycodes

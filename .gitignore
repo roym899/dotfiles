@@ -2,3 +2,4 @@
 .vim/undo
 .vim/plugged
 .vim/autoload
+.vim/session
