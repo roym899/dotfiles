@@ -52,6 +52,7 @@ Plug 'lambdalisue/fern-hijack.vim'
 Plug 'cespare/vim-toml'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'github/copilot.vim'
+Plug 'tpope/vim-surround'
 
 call plug#end()
 
@@ -214,6 +215,11 @@ nmap <leader>? <Plug>(fern-action-help) " remap ? to  backward search in vim
 command! Explore Fern .
 command! Vexplore vsplit | Fern .
 command! Sexplore split | Fern .
+
+" fern left right navigation (collapse and open)
+autocmd FileType fern nnoremap <buffer> <Left> <Plug>(fern-action-collapse)
+autocmd FileType fern nnoremap <buffer> <Right> <Plug>(fern-action-open-or-expand)
+
 
 " enable mouse
 set ttymouse=xterm2
