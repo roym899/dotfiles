@@ -35,10 +35,10 @@ Plug 'tpope/vim-eunuch' " add gcc and gc commands to toggle comments
 Plug 'ConradIrwin/vim-bracketed-paste' " automatic paste / nopaste for pasting from clipboard
 Plug 'Vimjas/vim-python-pep8-indent' " better indentation in Python
 Plug 'bfrg/vim-cpp-modern' " better support for C++11/14/17/20
-" Plug 'tpope/vim-sleuth' " automatic indent adjustment based on file
+Plug 'tpope/vim-sleuth' " automatic indent adjustment based on file
 Plug 'jvirtanen/vim-octave' " octave support
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intellisense
-Plug 'vim-autoformat/vim-autoformat' " add :Autoformat to invoke autoformatter
+" Plug 'vim-autoformat/vim-autoformat' " add :Autoformat to invoke autoformatter
 Plug 'othree/html5.vim' " better HTML support
 " Plug 'lervag/vimtex' " better support for tex
 Plug 'udalov/kotlin-vim' " support for kotlin
@@ -53,6 +53,7 @@ Plug 'cespare/vim-toml'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'github/copilot.vim'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive' " git support
 
 call plug#end()
 

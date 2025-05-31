@@ -1,53 +1,60 @@
 {
-    "diagnostic.checkCurrentLine": true,
-    "pyright.enable": true,
-    "inlayHint.enable": false,
-    "inlayHint.display": false,
-    "inlayHint.enableParameter": false,
-    "suggest": {
-        "noselect": true,
-        "enablePreselect": true
+  "diagnostic.checkCurrentLine": true,
+  "pyright.enable": true,
+  "inlayHint.enable": false,
+  "inlayHint.display": false,
+  "inlayHint.enableParameter": false,
+  "suggest": {
+    "noselect": true,
+    "enablePreselect": true
+  },
+  "coc.preferences.formatOnSaveFiletypes": [
+    "python",
+    "javascript",
+    "typescript",
+    "html",
+    "css",
+    "json",
+    "yaml",
+    "markdown"
+  ],
+  "python": {
+    "analysis": {
+      "typeCheckingMode": "off",
+      "diagnosticSeverityOverrides": {
+        "reportUnusedImport": "none",
+        "reportUndefinedVariable": "none"
+      }
     },
-    "python": {
-        "analysis": {
-            "typeCheckingMode": "off",
-            "diagnosticSeverityOverrides": {
-                "reportUnusedImport": "none",
-                "reportUndefinedVariable": "none"
-            }
-        },
-        "linting": {
-            "enabled": true,
-            "flake8Enabled": true,
-            "ruffEnabled": true
-        }
+    "linting": {
+      "enabled": true,
+      "flake8Enabled": true,
+      "ruffEnabled": true
     },
-    "languageserver": {
-        "ccls": {
-            "command": "ccls",
-            "filetypes": [
-                "c",
-                "cpp",
-                "objc",
-                "objcpp"
-            ],
-            "rootPatterns": [
-                ".ccls",
-                "compile_commands.json",
-                ".vim/",
-                ".git/",
-                ".hg/"
-            ],
-            "initializationOptions": {
-                "cache": {
-                    "directory": "/tmp/ccls"
-                }
-            }
-        },
-        "kotlin": {
-            "command": "~/code/kotlin-language-server/server/build/install/server/bin/kotlin-language-server",
-            "filetypes": ["kotlin"]
-        }
-
+    "formatting": {
+      "provider": "black"
     }
+  },
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "objc", "objcpp"],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        }
+      }
+    },
+    "kotlin": {
+      "command": "~/code/kotlin-language-server/server/build/install/server/bin/kotlin-language-server",
+      "filetypes": ["kotlin"]
+    }
+  }
 }
