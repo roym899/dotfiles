@@ -54,8 +54,11 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'github/copilot.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive' " git support
+Plug 'lervag/vimtex' " better synta highlighting for LaTeX
 
 call plug#end()
+
+syntax enable
 
 set tabstop=4
 set shiftwidth=4
@@ -100,6 +103,10 @@ inoremap qw <Esc>
 vnoremap qw <Esc>
 
 map Y y$
+
+nnoremap V v$
+
+nnoremap vv V
 
 " moving up and down in wrapped lines
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
