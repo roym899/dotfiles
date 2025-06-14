@@ -66,6 +66,9 @@ set expandtab
 
 colorscheme iceberg
 
+" Create alias for vertical Git
+cnoreabbrev git vert Git
+cnoreabbrev Git vert Git
 
 autocmd ColorScheme * highlight link QuickScopePrimary Define
 autocmd ColorScheme * highlight link QuickScopeSecondary Function
@@ -241,6 +244,9 @@ nnoremap <C-k> <Plug>(VM-Add-Cursor-Up)
 " use space to accept copilot suggestion
 imap <silent><script><expr> <S-Tab> copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
+
+" disable C-w o to avoid accidentally destroying the workspace
+noremap   <C-w>o <Nop>
 
 " other options 
 set splitright " open new vertical splits to the right
