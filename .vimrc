@@ -37,7 +37,6 @@ Plug 'Vimjas/vim-python-pep8-indent' " better indentation in Python
 Plug 'bfrg/vim-cpp-modern' " better support for C++11/14/17/20
 Plug 'tpope/vim-sleuth' " automatic indent adjustment based on file
 Plug 'jvirtanen/vim-octave' " octave support
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intellisense
 " Plug 'vim-autoformat/vim-autoformat' " add :Autoformat to invoke autoformatter
 Plug 'othree/html5.vim' " better HTML support
 " Plug 'lervag/vimtex' " better support for tex
@@ -55,6 +54,7 @@ Plug 'github/copilot.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive' " git support
 Plug 'lervag/vimtex' " better synta highlighting for LaTeX
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intellisense
 
 call plug#end()
 
@@ -63,8 +63,6 @@ syntax enable
 set tabstop=4
 set shiftwidth=4
 set expandtab
-
-colorscheme iceberg
 
 " Create alias for vertical Git
 cnoreabbrev git vert Git
@@ -114,6 +112,7 @@ nnoremap vv V
 " moving up and down in wrapped lines
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+
 
 " linenumbers
 set number
@@ -214,6 +213,20 @@ nnoremap <silent> <C-w><Down> :<C-u>call <SID>JumpWithWrap('j', 'k')<CR>
 nnoremap <silent> <C-w><Up> :<C-u>call <SID>JumpWithWrap('k', 'j')<CR>
 nnoremap <silent> <C-w><Right> :<C-u>call <SID>JumpWithWrap('l', 'h')<CR>
 
+" make arrow keys behave like hjkl
+nmap <buffer> <left> h
+nmap <buffer> <up> k
+nmap <buffer> <down> j
+nmap <buffer> <right> l
+nnoremap <Up> gk
+nnoremap <Down> gj
+nnoremap <Left> h
+nnoremap <Right> l
+inoremap <Up> <C-o>gk
+inoremap <Down> <C-o>gj
+inoremap <Left> <C-o>h
+inoremap <Right> <C-o>l
+
 " fern drawer by default
 augroup my-fern-startup
   autocmd! *
@@ -268,3 +281,10 @@ map <S-k> <Nop> " remove K (look up doc)
 
 nnoremap gb <C-O> " remap C-O to gb (go back) to avoid splitting conflict
 
+colorscheme iceberg
+
+" hi! ErrorMsg ctermfg=red ctermbg=White cterm=underline
+hi! VM_Mono ctermfg=red cterm=underline
+hi default link VM_Cursor Visual
+hi default link VM_Extend PmenuSel
+hi default link VM_Insert DiffChange
