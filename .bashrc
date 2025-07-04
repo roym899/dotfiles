@@ -176,3 +176,5 @@ fi
 . "$HOME/.cargo/env"
 export PATH=$PATH:/home/leo/.pixi/bin
 eval "$(pixi completion --shell bash)"
+# Set the default editor to vim (e.g., for vidir)
+export EDITOR="vim"
