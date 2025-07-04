@@ -140,7 +140,7 @@ export FZF_DEFAULT_COMMAND='ag -g ""'
 update_tmux_pane_path() {
   # Only run if inside a tmux session
   if [ -n "$TMUX" ]; then
-    tmux set-option -p @current-path `(pwd)`
+    tmux set-option -p @current-path "`(pwd)`"
   fi
 }
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND;}update_tmux_pane_path"
