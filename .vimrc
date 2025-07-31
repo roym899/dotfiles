@@ -288,3 +288,6 @@ hi! VM_Mono ctermfg=red cterm=underline
 hi default link VM_Cursor Visual
 hi default link VM_Extend PmenuSel
 hi default link VM_Insert DiffChange
+
+" sort imports on save
+autocmd BufWritePre *.py silent! :call CocAction('runCommand', 'python.sortImports')
