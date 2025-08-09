@@ -222,10 +222,6 @@ nnoremap <Up> gk
 nnoremap <Down> gj
 nnoremap <Left> h
 nnoremap <Right> l
-inoremap <Up> <C-o>gk
-inoremap <Down> <C-o>gj
-inoremap <Left> <C-o>h
-inoremap <Right> <C-o>l
 
 " fern drawer by default
 augroup my-fern-startup
@@ -291,3 +287,32 @@ hi default link VM_Insert DiffChange
 
 " sort imports on save
 autocmd BufWritePre *.py silent! :call CocAction('runCommand', 'python.sortImports')
+
+
+" =============================================
+"  Handle Large Files
+" =============================================
+
+" 1. Define the function that will run on large files.
+function! HandleLargeFile()
+  " Set your limits: 10MB or 200,000 lines. Adjust as needed.
+  let s:file_size_limit = 10000000
+  let s:line_count_limit = 200000
+
+  if getfsize(expand('%:p')) > s:file_size_limit || line('$') > s:line_count_limit
+    echo "Large file detected. Disabling coc..."
+
+    " Disable CoC (if you have it)
+    if exists(':CocDisable')
+      CocDisable
+    endif
+  endif
+endfunction
+
+" 2. Create the autocommand group to call the function.
+augroup LargeFile
+  " Clear any old autocommands in this group
+  autocmd!
+  " Call our function every time a file is opened
+  autocmd BufReadPost * call HandleLargeFile()
+augroup END
