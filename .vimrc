@@ -39,21 +39,20 @@ Plug 'tpope/vim-sleuth' " automatic indent adjustment based on file
 Plug 'jvirtanen/vim-octave' " octave support
 " Plug 'vim-autoformat/vim-autoformat' " add :Autoformat to invoke autoformatter
 Plug 'othree/html5.vim' " better HTML support
-" Plug 'lervag/vimtex' " better support for tex
 Plug 'udalov/kotlin-vim' " support for kotlin
 Plug 'unblevable/quick-scope' " highlighting for faster left/right navigation
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " for Ag search
 Plug 'junegunn/fzf.vim'
 Plug 'lambdalisue/fern.vim'
 Plug 'djoshea/vim-autoread'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
 Plug 'lambdalisue/fern-hijack.vim'
 Plug 'cespare/vim-toml'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'github/copilot.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive' " git support
-Plug 'lervag/vimtex' " better synta highlighting for LaTeX
+Plug 'lervag/vimtex'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intellisense
 
 call plug#end()
@@ -138,6 +137,12 @@ function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+"Ctrl+P and Ctrl+Shift+P (similar to vscode)
+nnoremap <silent> <C-p> :Files<CR>
+inoremap <silent> <C-p> <C-o>:<C-u>Files<CR>
+nnoremap <silent> <F12> :<C-u>CocCommand<CR>
+inoremap <silent> <F12> <C-o>:<C-u>CocCommand<CR>
 
 "GoTo code navi
 nmap <silent> gd <Plug>(coc-definition)
@@ -284,9 +289,6 @@ hi! VM_Mono ctermfg=red cterm=underline
 hi default link VM_Cursor Visual
 hi default link VM_Extend PmenuSel
 hi default link VM_Insert DiffChange
-
-" sort imports on save
-autocmd BufWritePre *.py silent! :call CocAction('runCommand', 'python.sortImports')
 
 
 " =============================================

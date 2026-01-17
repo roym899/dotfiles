@@ -1,0 +1,4 @@
+[[keyboard.bindings]]
+key = "P"
+mods = "Control|Shift"
+chars = "\u001b[24~"
