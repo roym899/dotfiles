@@ -318,3 +318,41 @@ augroup LargeFile
   " Call our function every time a file is opened
   autocmd BufReadPost * call HandleLargeFile()
 augroup END
+
+augroup Osc52Yank
+    autocmd!
+    autocmd TextYankPost * call s:Osc52Copy()
+augroup END
+
+function! s:Osc52Copy()
+    if v:event.regname ==# '' || v:event.regname ==# '+' || v:event.regname ==# '*'
+        let l:payload = join(v:event.regcontents, "\n")
+        if v:event.regtype ==# 'V'
+            let l:payload .= "\n"
+        endif
+
+        " Encode to Base64 using the system tool
+        let l:b64 = system("base64 | tr -d '\n'", l:payload)
+
+        " Construct the OSC 52 sequence
+        " \e]52;c; is the start, \x07 (BEL) is the terminator
+        let l:osc = "\e]52;c;" . l:b64 . "\x07"
+
+        " Tmux wrapper logic
+        if $TMUX !=# ''
+            let l:osc = "\ePtmux;\e" . substitute(l:osc, "\e", "\e\e", "g") . "\e\\"
+        endif
+
+        " Use echoraw if available (Vim 8.2.0892+)
+        if exists('*echoraw')
+            call echoraw(l:osc)
+        else
+            " Fallback: Write directly to the terminal via a silent execute
+            " This 'set t_XR=' trick forces Vim to output the string to the tty
+            let l:old_tty = &t_ti
+            let &t_ti = l:osc
+            silent! set t_ti=
+            let &t_ti = l:old_tty
+        endif
+    endif
+endfunction
