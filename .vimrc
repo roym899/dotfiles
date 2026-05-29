@@ -37,7 +37,6 @@ Plug 'Vimjas/vim-python-pep8-indent' " better indentation in Python
 Plug 'bfrg/vim-cpp-modern' " better support for C++11/14/17/20
 Plug 'tpope/vim-sleuth' " automatic indent adjustment based on file
 Plug 'jvirtanen/vim-octave' " octave support
-" Plug 'vim-autoformat/vim-autoformat' " add :Autoformat to invoke autoformatter
 Plug 'othree/html5.vim' " better HTML support
 Plug 'udalov/kotlin-vim' " support for kotlin
 Plug 'unblevable/quick-scope' " highlighting for faster left/right navigation
@@ -49,11 +48,12 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' 
 Plug 'lambdalisue/fern-hijack.vim'
 Plug 'cespare/vim-toml'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'github/copilot.vim'
+Plug 'ggml-org/llama.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive' " git support
 Plug 'lervag/vimtex'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intellisense
+Plug 'AndrewRadev/inline_edit.vim'
 
 call plug#end()
 
@@ -124,6 +124,10 @@ hi VertSplit term=NONE cterm=NONE gui=NONE
 " C indent settings
 " note that cindent is on by default for C/C++ files
 set cinoptions+=(0,w1,W1s
+
+" inline_edit settings
+let g:inline_edit_autowrite = 1 " save to original file automatically
+let g:inline_edit_new_buffer_command = "enew"
 
 " Coc.nvim
 " Tab completion
@@ -245,6 +249,11 @@ command! Sexplore split | Fern .
 autocmd FileType fern nnoremap <buffer> <Left> <Plug>(fern-action-collapse)
 autocmd FileType fern nnoremap <buffer> <Right> <Plug>(fern-action-open-or-expand)
 
+" llama.vim
+let g:llama_config = { 'show_info': 0 } " disable info
+let g:llama_config.keymap_fim_accept_full = "<S-Tab>"
+let g:llama_config.keymap_fim_accept_line = "<S-Down>"
+let g:llama_config.keymap_fim_accept_word = "<S-Right>"
 
 " enable mouse
 set ttymouse=xterm2
@@ -254,10 +263,6 @@ let g:VM_mouse_mappings = 1  " for visual-multi
 " visual-multi key mappings
 nnoremap <C-j> <Plug>(VM-Add-Cursor-Down)
 nnoremap <C-k> <Plug>(VM-Add-Cursor-Up)
-
-" use space to accept copilot suggestion
-imap <silent><script><expr> <S-Tab> copilot#Accept("\<CR>")
-let g:copilot_no_tab_map = v:true
 
 " disable C-w o to avoid accidentally destroying the workspace
 noremap   <C-w>o <Nop>
@@ -291,11 +296,7 @@ hi default link VM_Extend PmenuSel
 hi default link VM_Insert DiffChange
 
 
-" =============================================
-"  Handle Large Files
-" =============================================
-
-" 1. Define the function that will run on large files.
+" Large file handling
 function! HandleLargeFile()
   " Set your limits: 10MB or 200,000 lines. Adjust as needed.
   let s:file_size_limit = 10000000
@@ -311,7 +312,6 @@ function! HandleLargeFile()
   endif
 endfunction
 
-" 2. Create the autocommand group to call the function.
 augroup LargeFile
   " Clear any old autocommands in this group
   autocmd!
@@ -319,6 +319,8 @@ augroup LargeFile
   autocmd BufReadPost * call HandleLargeFile()
 augroup END
 
+
+" Osc52 yank
 augroup Osc52Yank
     autocmd!
     autocmd TextYankPost * call s:Osc52Copy()
