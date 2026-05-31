@@ -256,7 +256,9 @@ let g:llama_config.keymap_fim_accept_line = "<S-Down>"
 let g:llama_config.keymap_fim_accept_word = "<S-Right>"
 
 " enable mouse
-set ttymouse=xterm2
+if !has("nvim")
+  set ttymouse=xterm2
+endif
 set mouse=a
 let g:VM_mouse_mappings = 1  " for visual-multi
 
@@ -294,7 +296,6 @@ hi! VM_Mono ctermfg=red cterm=underline
 hi default link VM_Cursor Visual
 hi default link VM_Extend PmenuSel
 hi default link VM_Insert DiffChange
-
 
 " Large file handling
 function! HandleLargeFile()
