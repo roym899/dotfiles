@@ -52,7 +52,7 @@ Plug 'ggml-org/llama.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive' " git support
 Plug 'lervag/vimtex'
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intellisense
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm ci'}
 Plug 'AndrewRadev/inline_edit.vim'
 
 call plug#end()
@@ -282,6 +282,8 @@ set scrolloff=5 " keep 5 lines above and below cursor
 set undofile
 set undolevels=1000
 set undoreload=10000
+set spell  " enable spell checking
+set spellcapcheck=  " disable capitalization check
 au FileType * setlocal formatoptions-=c formatoptions-=o formatoptions-=r
 :set exrc " read local .vimrc
 autocmd BufEnter * :syntax sync fromstart " slow but improved syntax highlighting
