@@ -38,7 +38,6 @@ Plug 'bfrg/vim-cpp-modern' " better support for C++11/14/17/20
 Plug 'tpope/vim-sleuth' " automatic indent adjustment based on file
 Plug 'jvirtanen/vim-octave' " octave support
 Plug 'othree/html5.vim' " better HTML support
-Plug 'udalov/kotlin-vim' " support for kotlin
 Plug 'unblevable/quick-scope' " highlighting for faster left/right navigation
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " for Ag search
 Plug 'junegunn/fzf.vim'
@@ -92,6 +91,9 @@ let g:tex_flavor = 'latex'
 let g:coc_disable_startup_warning = 1  " remove warning when using vim for git commit
 
 set background=dark " otherwise colors for vim in tmux will be different
+set termguicolors
+colorscheme iceberg
+highlight WinSeparator guifg=#2a3147 guibg=NONE
 
 set directory=~/.vim/swapfiles//
 set backupdir=~/.vim/backupfiles//
@@ -119,7 +121,6 @@ set number
 
 " style
 set fillchars+=vert:\│ " continuous, thin vertical split line
-hi VertSplit term=NONE cterm=NONE gui=NONE
 
 " C indent settings
 " note that cindent is on by default for C/C++ files
@@ -290,8 +291,6 @@ autocmd BufEnter * :syntax sync fromstart " slow but improved syntax highlightin
 map <S-k> <Nop> " remove K (look up doc)
 
 nnoremap gb <C-O> " remap C-O to gb (go back) to avoid splitting conflict
-
-colorscheme iceberg
 
 " hi! ErrorMsg ctermfg=red ctermbg=White cterm=underline
 hi! VM_Mono ctermfg=red cterm=underline
