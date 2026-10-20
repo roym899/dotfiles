@@ -1,4 +1,6 @@
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    bindkey '^[[1;5D' backward-word
-    bindkey '^[[1;5C' forward-word
-fi
+# Load system-wide defaults first (Home, End, Delete, etc.)
+$include /etc/inputrc
+
+# Word jumping with Ctrl + Left / Right
+"\e[1;5D": backward-word
+"\e[1;5C": forward-word
